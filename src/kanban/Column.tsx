@@ -18,7 +18,7 @@ const Column = ({
 }) => {
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [newTaskDescription, setNewTaskDescription] = useState("");
-  const inputRef = useRef(null);
+  const inputRef = useRef<null | HTMLInputElement>(null);
 
   const focusOut = () => {
     if (newTaskDescription !== "") {
@@ -29,8 +29,8 @@ const Column = ({
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
+    const handleClickOutside = ({ target }: MouseEvent) => {
+      if (inputRef.current && !inputRef.current.contains(target as Node)) {
         focusOut();
       }
     };
