@@ -7,6 +7,8 @@
 
 .task:hover {
   cursor: pointer;
+  background-color: slateblue;
+  color: white;
 }
 
 .column {

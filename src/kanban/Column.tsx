@@ -1,10 +1,21 @@
 import { Draggable } from "react-beautiful-dnd";
-import Task from "./Task";
 import Droppable from "../Droppable";
 import { MdAddCircleOutline } from "react-icons/md";
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
-const Column = ({ item, index, children, name, addTask }) => {
+const Column = ({
+  item,
+  index,
+  children,
+  name,
+  addTask,
+}: {
+  item: number;
+  index: number;
+  children: ReactNode;
+  name: string;
+  addTask: (item: number, newTaskDescription: string) => void;
+}) => {
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [newTaskDescription, setNewTaskDescription] = useState("");
   const inputRef = useRef(null);
@@ -18,7 +29,7 @@ const Column = ({ item, index, children, name, addTask }) => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
         focusOut();
       }

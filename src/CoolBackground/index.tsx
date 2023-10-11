@@ -1,6 +1,7 @@
+import React from "react";
 import "./index.css";
 
-const CoolBackground = () => {
+const CoolBackground: React.FC = () => {
   return (
     <ul className="background">
       <li></li>

@@ -1,8 +1,14 @@
 import { Draggable } from "react-beautiful-dnd";
 
-const Task = ({ description, sequence }) => {
+const Task = ({
+  description,
+  index,
+}: {
+  description: string;
+  index: number;
+}) => {
   return (
-    <Draggable draggableId={description} index={sequence} key={sequence}>
+    <Draggable draggableId={description} index={index}>
       {(provided) => (
         <div
           ref={provided.innerRef}

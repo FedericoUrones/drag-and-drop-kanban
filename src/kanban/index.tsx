@@ -211,7 +211,7 @@ const Board = () => {
                         <Task
                           key={task.id}
                           description={task.description}
-                          sequence={idx}
+                          index={idx}
                         />
                       ))}
                   </Column>
