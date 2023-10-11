@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.signature {
+  font-style: italic;
+  color: inherit;
+}

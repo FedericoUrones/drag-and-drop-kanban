@@ -9,6 +9,13 @@ function App() {
         flexDirection: "column",
       }}
     >
+      <a
+        href="https://github.com/FedericoUrones/drag-and-drop-kanban"
+        target="_blank"
+        className="signature"
+      >
+        by Federico Urones
+      </a>
       <h1>Drag and Drop Kanban!</h1>
       <div
         style={{
