@@ -9,7 +9,7 @@ function App() {
         flexDirection: "column",
       }}
     >
-      <h1>Drag and Drop Kanvan!</h1>
+      <h1>Drag and Drop Kanban!</h1>
       <div
         style={{
           display: "flex",
