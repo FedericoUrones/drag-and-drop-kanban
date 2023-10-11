@@ -59,29 +59,29 @@ const Column = ({
                 </div>
               )}
             </Droppable>
-            <div className="new-task">
-              {isAddingTask ? (
-                <input
-                  ref={inputRef}
-                  placeholder="Introduzca una descripción"
-                  className="new-task-input"
-                  onChange={(event) =>
-                    setNewTaskDescription(event.target.value)
+            {isAddingTask ? (
+              <input
+                type="text"
+                ref={inputRef}
+                placeholder="Introduzca una descripción"
+                className="new-task-input"
+                onChange={(event) => setNewTaskDescription(event.target.value)}
+                value={newTaskDescription}
+                onBlur={focusOut}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    focusOut();
                   }
-                  value={newTaskDescription}
-                  onBlur={focusOut}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter") {
-                      focusOut();
-                    }
-                  }}
-                />
-              ) : (
-                <div onClick={() => setIsAddingTask(true)}>
-                  Añadir una tarea <MdAddCircleOutline />
-                </div>
-              )}
-            </div>
+                }}
+              />
+            ) : (
+              <div
+                onClick={() => setIsAddingTask(true)}
+                className="new-task-wrapper"
+              >
+                <div>Añadir una tarea</div> <MdAddCircleOutline />
+              </div>
+            )}
           </div>
         )}
       </Draggable>
