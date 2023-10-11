@@ -4,7 +4,7 @@ import Droppable from "../Droppable";
 import { MdAddCircleOutline } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
 
-const Column = ({ item, index, cards, title, addTask }) => {
+const Column = ({ item, index, children, name, addTask }) => {
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [newTaskDescription, setNewTaskDescription] = useState("");
   const inputRef = useRef(null);
@@ -31,7 +31,7 @@ const Column = ({ item, index, cards, title, addTask }) => {
 
   return (
     <>
-      <Draggable key={item} draggableId={item} index={index}>
+      <Draggable key={item} draggableId={name} index={index}>
         {(provided) => (
           <div
             ref={provided.innerRef}
@@ -39,13 +39,11 @@ const Column = ({ item, index, cards, title, addTask }) => {
             {...provided.dragHandleProps}
             className="column"
           >
-            <h2>{title}</h2>
-            <Droppable droppableId={item}>
+            <h2>{name}</h2>
+            <Droppable droppableId={name}>
               {(provided) => (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {cards.map((card, sequence) => (
-                    <Task key={card} card={card} sequence={sequence} />
-                  ))}
+                  {children}
                   {provided.placeholder}
                 </div>
               )}
