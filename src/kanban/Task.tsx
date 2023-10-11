@@ -1,31 +1,20 @@
-import React from "react";
+import { Draggable } from "react-beautiful-dnd";
 
-function Task(props: {
-  description: string;
-  isDragging: any;
-  isGroupedOver: any;
-  provided: any;
-  style: any;
-  isClone: any;
-  index: any;
-}) {
-  const { description, isDragging, isGroupedOver, provided, isClone, index } =
-    props;
-
+const Task = ({ card, sequence }) => {
   return (
-    <div
-      isDragging={isDragging}
-      isGroupedOver={isGroupedOver}
-      isClone={isClone}
-      ref={provided.innerRef}
-      {...provided.draggableProps}
-      {...provided.dragHandleProps}
-      data-is-dragging={isDragging}
-      data-index={index}
-    >
-      <p>{description}</p>
-    </div>
+    <Draggable draggableId={card} index={sequence} key={sequence}>
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className="task"
+        >
+          {card}
+        </div>
+      )}
+    </Draggable>
   );
-}
+};
 
-export default React.memo(Task);
+export default Task;

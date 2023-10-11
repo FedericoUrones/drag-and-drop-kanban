@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
 import Droppable from "../Droppable";
+import "./index.css";
 
 const Board = (props) => {
   const [initialState, setinitialState] = useState({
@@ -20,23 +21,23 @@ const Board = (props) => {
       card6: { id: "card6", title: "F" },
     },
     columns: {
-      "column-1": {
-        id: "column-1",
-        title: "column1",
+      todo: {
+        id: "todo",
+        title: "SIN REALIZAR",
         cardIds: ["card1", "card6"],
       },
-      "column-2": {
-        id: "column-2",
-        title: "column2",
+      doing: {
+        id: "doing",
+        title: "EN PROCESO",
         cardIds: ["card2", "card4"],
       },
-      "column-3": {
-        id: "column-3",
-        title: "column3",
+      done: {
+        id: "done",
+        title: "REALIZADO",
         cardIds: ["card3", "card5"],
       },
     },
-    ColumnOrder: ["column-1", "column-2", "column-3"],
+    ColumnOrder: ["todo", "doing", "done"],
   });
 
   const onDragEnd = (result) => {
@@ -96,6 +97,20 @@ const Board = (props) => {
     setinitialState(newState);
   };
 
+  const addTask = (column, newDescription) => {
+    const newState = {
+      ...initialState,
+      columns: {
+        ...initialState.columns,
+        [column]: {
+          ...initialState.columns[column],
+          cardIds: [...initialState.columns[column].cardIds, newDescription],
+        },
+      },
+    };
+    setinitialState(newState);
+  };
+
   return (
     <div>
       <main>
@@ -120,7 +135,9 @@ const Board = (props) => {
                     key={item}
                     item={item}
                     index={index}
+                    title={initialState.columns[item].title}
                     cards={initialState.columns[item].cardIds}
+                    addTask={addTask}
                   />
                 ))}
                 {provided.placeholder}
