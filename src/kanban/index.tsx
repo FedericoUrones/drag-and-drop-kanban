@@ -30,6 +30,10 @@ const findTaskByDescription = (
   )!;
 };
 
+const findTaskById = (taskId: number, tasks: TasksArray): TaskType => {
+  return tasks.find((singleTask) => singleTask.id === taskId)!;
+};
+
 const findColumnByName = (
   columnName: string,
   columns: ColumnsArray
@@ -191,11 +195,7 @@ const Board = () => {
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  width: "auto",
-                }}
+                className="column-wrapper"
               >
                 {columnsOrder.map((columnId, index) => (
                   <Column
@@ -205,13 +205,11 @@ const Board = () => {
                     name={columns[columnId].name}
                     addTask={addTask}
                   >
-                    {tasks
-                      .filter((task) =>
-                        columns[columnId].tasks.includes(task.id)
-                      )
+                    {columns[columnId].tasks
+                      .map((taskId) => findTaskById(taskId, tasks))
                       .map((task, idx) => (
                         <Task
-                          key={task.description}
+                          key={task.id}
                           description={task.description}
                           sequence={idx}
                         />

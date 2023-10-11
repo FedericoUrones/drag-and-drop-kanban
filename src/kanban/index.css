@@ -17,6 +17,12 @@
   width: 300px;
 }
 
+.column-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+}
+
 .new-task {
   display: flex;
   align-items: center;
